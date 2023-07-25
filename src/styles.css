@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("~/node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import url("~/node_modules/bootstrap-icons/font/bootstrap-icons.css");
+@import url("@fontsource/julee/index.css");
+@import url("@fontsource/libre-baskerville/index.css");
+@import url("@fontsource/baskervville/index.css");
+
+:root {
+    --header-color: #55BDCA;
+    --header-color-rgb: 85, 189, 202;
+    --regular-color: #C8EFF9;
+    --highlighted-cold-color: #022444;
+    --highlighted-cold-color-rgb: 2, 36, 68;
+    --highlighted-warm-color: #F27D42;
+    --highlighted-warm-color-rgb: 242, 125, 66;
+}
+
+html, body {
+    position: relative;
+    height: 100%;
+}
+
+app-root {
+    position: relative;
+    display: block;
+    min-height: 100%;
+    padding-bottom: 56px;
+}
+
+.logo-text-font {
+    font-family: Julee;
+}
+
+.header-text-font {
+    font-family: Libre Baskerville;
+}
+
+.regular-text-font {
+    font-family: Baskervville;
+}
+
+.header-background {
+    background-color: var(--header-color);
+}
+
+.regular-background {
+    background-color: var(--regular-color);  
+}
+
+.btn-primary {
+    background-color: var(--highlighted-cold-color);
+    border: none
+}
+
+.btn-primary:hover {
+    background-color: var(--header-color);
+    color: black;
+}
