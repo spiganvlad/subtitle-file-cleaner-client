@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { ConverterType } from "src/app/core/model/converter-type.enum";
 
 @Component({
     selector: "app-home-page",
@@ -7,4 +8,6 @@ import { RouterModule } from "@angular/router";
     imports: [RouterModule],
     standalone: true
 })
-export class HomeComponent { }
+export class HomeComponent { 
+    public ConverterType = ConverterType;
+}

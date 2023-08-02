@@ -10,7 +10,7 @@
                 <div class="col text-center m-auto">
                     <h4 class="header-text-font">Ass file Cleaning</h4>
                     <p class="regular-text-font">Convert your .ass file to .txt while removing unnecessary formatting and tags.</p>
-                    <a [routerLink]="['/cleaner']"
+                    <a [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Ass}"
                     class="btn btn-primary btn-lg regular-text-font">To Ass Converter</a>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="col text-center m-auto">
                     <h4 class="header-text-font">Sbv file Cleaning</h4>
                     <p class="regular-text-font">Convert your .sbv file to .txt while removing unnecessary formatting and tags.</p>
-                    <a [routerLink]="['/cleaner']" 
+                    <a [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Sbv}"
                     class="btn btn-primary btn-lg regular-text-font">To Sbv Converter</a>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="col text-center m-auto">
                     <h4 class="header-text-font">Srt file Cleaning</h4>
                     <p class="regular-text-font">Convert your .srt file to .txt while removing unnecessary formatting and tags.</p>
-                    <a [routerLink]="['/cleaner']" 
+                    <a [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Srt}"
                     class="btn btn-primary btn-lg regular-text-font">To Srt Converter</a>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="col text-center m-auto">
                     <h4 class="header-text-font">Sub file Cleaning</h4>
                     <p class="regular-text-font">Convert your .sub file to .txt while removing unnecessary formatting and tags.</p>
-                    <a [routerLink]="['/cleaner']" 
+                    <a [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Sub}"
                     class="btn btn-primary btn-lg regular-text-font">To Sub Converter</a>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="col text-center m-auto">
                     <h4 class="header-text-font">Vtt file Cleaning</h4>
                     <p class="regular-text-font">Convert your .vtt file to .txt while removing unnecessary formatting and tags.</p>
-                    <a [routerLink]="['/cleaner']" 
+                    <a [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Vtt}"
                     class="btn btn-primary btn-lg regular-text-font">To Vtt Converter</a>
                 </div>
             </div>
