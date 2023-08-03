@@ -1,0 +1,6 @@
+<div *ngIf="isVisable" class="d-flex justify-content-end">
+    <div>
+        <p class="p-2 text-danger rounded header-text-font translucent-highlighted-warm-bg"
+        *ngFor="let notification of notifications">{{notification.message}}</p>
+    </div>
+</div>

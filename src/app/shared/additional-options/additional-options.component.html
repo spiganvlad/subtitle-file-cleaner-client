@@ -1,0 +1,31 @@
+<div class="text-center">
+    <p class="header-text-font">Additional options</p>
+</div>
+
+<div class="form-check my-3">
+    <input type="checkbox" class="form-check-input"
+    [checked]="optionList?.options?.get(OptionType.ToOneLine)" (click)="toggleOption(OptionType.ToOneLine)">
+    <label class="form-check-label">To one line</label>
+</div>
+
+<div class="my-3">
+    <p class="d-inline dropdown-toggle" role="button" (click)="toggleTagDisplay()">Delete tags</p>
+</div>
+
+<div *ngIf="isTagsDisplayed">
+    <div class="form-check mx-3 my-2">
+        <input type="checkbox" class="form-check-input"
+        [checked]="optionList?.options?.get(OptionType.DeleteBasicTags)" (click)="toggleOption(OptionType.DeleteBasicTags)">
+        <label class="form-check-label">Basic tags</label>
+    </div>
+    <div class="form-check mx-3 my-2">
+        <input type="checkbox" class="form-check-input"
+        [checked]="optionList?.options?.get(OptionType.DeleteAssTags)" (click)="toggleOption(OptionType.DeleteAssTags)">
+        <label class="form-check-label">Ass tags</label>
+    </div>
+    <div class="form-check mx-3 my-2">
+        <input type="checkbox" class="form-check-input"
+        [checked]="optionList?.options?.get(OptionType.DeleteSubTags)" (click)="toggleOption(OptionType.DeleteSubTags)">
+        <label class="form-check-label">Sub tags</label>
+    </div>
+</div>

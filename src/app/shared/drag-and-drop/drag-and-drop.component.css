@@ -1,0 +1,9 @@
+.dropbox-calm-state {
+    background-color: rgba(var(--header-color-rgb), 0.3);
+    border-style: dashed;
+}
+
+.dropbox-active-state {
+    background-color: var(--highlighted-warm-color);
+    border-style: solid;
+}

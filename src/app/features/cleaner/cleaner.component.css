@@ -1,7 +1,0 @@
-.slight-opacity-header-bg {
-    background-color: rgba(var(--header-color-rgb), 0.3)
-}
-
-.dashed-border {
-    border-style: dashed;
-}

@@ -1,0 +1,15 @@
+<div #dropBox class="text-center dropbox-calm-state" dropFile 
+(fileDropedEvent)="fileReceived($event)" (dragenter)="dragEnter($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)">
+    <div class="py-3">
+        <img src="../../../../assets/img/drag-and-drop.png" alt="image">
+    </div>
+    
+    <div class="py-3">
+        <div >
+            <p class="regular-text-font">Drag&Drop file here</p>
+            <p class="regular-text-font"><small>or</small></p>
+            <input #fileInput class="d-none" type="file" (change)="fileSelected($event)">
+            <button class="btn btn-primary btn-lg regular-text-fon" (click)="triggerFileInputClick()">Upload</button>
+        </div>
+    </div>
+</div>

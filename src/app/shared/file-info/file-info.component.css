@@ -1,0 +1,7 @@
+thead > tr > th {
+    background-color: rgba(var(--highlighted-warm-color-rgb), 0.85);
+}
+
+tbody > tr > th {
+    background-color: var(--regular-color);
+}

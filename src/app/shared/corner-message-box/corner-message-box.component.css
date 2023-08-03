@@ -1,0 +1,3 @@
+.translucent-highlighted-warm-bg {
+    background-color: rgba(var(--highlighted-warm-color-rgb), 0.40);
+}
