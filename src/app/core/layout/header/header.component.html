@@ -9,17 +9,17 @@
                 <ul class="navbar-nav">
                 
                     <li class="nav-item active mx-2">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
     
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Cleaners</a>
                         <div class="dropdown-menu regular-background">
-                            <a class="dropdown-item" href="#">.ASS</a>
-                            <a class="dropdown-item" href="#">.SBV</a>
-                            <a class="dropdown-item" href="#">.SRT</a>
-                            <a class="dropdown-item" href="#">.SUB</a>
-                            <a class="dropdown-item" href="#">.VTT</a>
+                            <a class="dropdown-item" [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Ass}">.ASS</a>
+                            <a class="dropdown-item" [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Sbv}">.SBV</a>
+                            <a class="dropdown-item" [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Srt}">.SRT</a>
+                            <a class="dropdown-item" [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Sub}">.SUB</a>
+                            <a class="dropdown-item" [routerLink]="['/cleaner']" [queryParams]="{type: ConverterType.Vtt}">.VTT</a>
                         </div>
                     </li>
     
@@ -28,8 +28,13 @@
             <div>
                 <form class="form-inline">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="File id">
-                        <span class="input-group-text" role="button"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="File id"
+                        [(ngModel)]="fileId" [ngModelOptions]="{ standalone: true }">
+
+                        <span class="input-group-text" role="button"
+                        [routerLink]="['/converted']" [queryParams]="{id: fileId}">
+                            <i class="bi bi-search"></i>
+                        </span>
                     </div> 
                 </form>
             </div>
