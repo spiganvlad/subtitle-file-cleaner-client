@@ -5,3 +5,7 @@ thead > tr > th {
 tbody > tr > th {
     background-color: var(--regular-color);
 }
+
+td, th {
+    border: none;
+}

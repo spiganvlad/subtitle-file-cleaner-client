@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { FileInfo } from "./file-info.model";
 import { StorageCapacityPipe } from "../pipes/storage-capacity.pipe";
 
 @Component({
@@ -10,5 +11,5 @@ import { StorageCapacityPipe } from "../pipes/storage-capacity.pipe";
 })
 export class FileInfoComponent {
     @Input("file")
-    public file: File | undefined;
+    public file: FileInfo | undefined;
 }
