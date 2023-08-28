@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { NgIf, NgFor } from "@angular/common";
-import { Notification } from "src/app/core/model/notification.model";
+import { Notification } from "src/app/shared/corner-message-box/notification.model";
 
 
 @Component({
