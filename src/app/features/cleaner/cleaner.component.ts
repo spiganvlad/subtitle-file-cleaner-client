@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgIf } from "@angular/common";
-import { ActivatedRoute, Params } from "@angular/router";3
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import { CornerMessageBoxComponent } from "src/app/shared/corner-message-box/corner-message-box.component";
 import { DragAndDropComponent } from "src/app/shared/drag-and-drop/drag-and-drop.component";
 import { AdditionalOptionsComponent } from "src/app/shared/additional-options/additional-options.component";
 import { FileInfoComponent } from "src/app/shared/file-info/file-info.component";
-import { ConverterService } from "src/app/core/services/converter.service";
+import { ConvertedFileService } from "src/app/core/services/converted-file.service";
 import { ConverterType } from "src/app/core/model/converter-type.enum";
 import { Converter } from "src/app/core/model/converter.model";
 import { OptionList } from "src/app/core/model/option-list.model";
@@ -15,7 +15,7 @@ import { OptionList } from "src/app/core/model/option-list.model";
     templateUrl: "./cleaner.component.html",
     imports: [NgIf, CornerMessageBoxComponent, DragAndDropComponent, AdditionalOptionsComponent,
         FileInfoComponent],
-    providers: [ConverterService],
+    providers: [ConvertedFileService],
     standalone: true
 })
 export class CleanerComponent implements OnInit { 
@@ -26,8 +26,9 @@ export class CleanerComponent implements OnInit {
     public optionList: OptionList | undefined;
 
     constructor(
+        private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
-        private readonly converterService: ConverterService
+        private readonly convertedFileService: ConvertedFileService,
     ) { }
 
     public ngOnInit(): void {
@@ -66,7 +67,8 @@ export class CleanerComponent implements OnInit {
             return;
         }
         
-        this.converterService.convert(this.converter, this.optionList);
+        this.convertedFileService.create(this.converter, this.optionList)
+            .subscribe(convertedFile => this.router.navigate(["/converted"], { queryParams: { id: convertedFile.id } }));
     }
 
     public receiveFile(files: FileList): void {
