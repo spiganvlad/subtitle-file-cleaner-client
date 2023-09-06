@@ -6,11 +6,11 @@
     </div>
 
     <div class="row my-4">
-        <div class="col-8">
+        <div class="col-sm-8">
             <app-drag-and-drop (fileReceivedEvent)="receiveFile($event)"></app-drag-and-drop>
         </div>
         
-        <div class="col-4">
+        <div class="col-sm-4 my-3">
             <app-additional-options [converterType]="converter.type" (optionsChanged)="optionsChaned($event)"></app-additional-options>
 
             <div class="text-center">
