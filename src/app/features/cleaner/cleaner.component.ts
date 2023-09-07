@@ -68,7 +68,10 @@ export class CleanerComponent implements OnInit {
         }
         
         this.convertedFileService.create(this.converter, this.optionList)
-            .subscribe(convertedFile => this.router.navigate(["/converted"], { queryParams: { id: convertedFile.id } }));
+            .subscribe({
+                next: convertedFile => this.router.navigate(["/converted"], { queryParams: { id: convertedFile.id } }),
+                error: error => this.messageBox?.showMessage(error.message)
+            });
     }
 
     public receiveFile(files: FileList): void {

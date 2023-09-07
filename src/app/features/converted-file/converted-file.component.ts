@@ -42,7 +42,10 @@ export class ConvertedFileComponent implements OnInit {
         }
 
         this.convertedFileService.get(guidId)
-            .subscribe(convertedFile => { this.convertedFile = convertedFile; console.log(convertedFile); });
+            .subscribe({
+                next: convertedFile => { this.convertedFile = convertedFile; console.log(convertedFile); },
+                error: error => console.log(error)
+            });
     }
 
     public downloadFile(): void {
@@ -51,24 +54,30 @@ export class ConvertedFileComponent implements OnInit {
         }
 
         this.convertedFileService.downloadContent(this.convertedFile.id)
-            .subscribe(arrayBuffer => {  
-                const blob = new Blob([arrayBuffer], { type: "application/octet-stream" });
-                
-                const downloadLink = document.createElement("a");
-                downloadLink.href = window.URL.createObjectURL(blob);
-                
-                if (this.convertedFile !== undefined) {
-                    downloadLink.setAttribute('download', this.convertedFile.name);
-                }
-                
-                downloadLink.dispatchEvent(new MouseEvent("click"));
+            .subscribe({
+                next: arrayBuffer => {  
+                    const blob = new Blob([arrayBuffer], { type: "application/octet-stream" });
+                    
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    
+                    if (this.convertedFile !== undefined) {
+                        downloadLink.setAttribute('download', this.convertedFile.name);
+                    }
+                    
+                    downloadLink.dispatchEvent(new MouseEvent("click"));
+                },
+                error: error => console.log(error)
             });
     }
 
     public deleteFile(): void {
         if (this.convertedFile !== undefined) {
             this.convertedFileService.delete(this.convertedFile.id)
-                .subscribe(_ => this.router.navigate(["/"]));
+                .subscribe({
+                    next: _ => this.router.navigate(["/"]),
+                    error: error => console.log(error)
+                });
         }
     }
 
@@ -87,9 +96,12 @@ export class ConvertedFileComponent implements OnInit {
     public saveEditing(): void {
         if (this.convertedFile !== undefined && this.editName !== undefined) {
             this.convertedFileService.updateName(this.convertedFile.id, this.editName)
-                .subscribe(convertedFile => {
-                    this.convertedFile = convertedFile;
-                    this.isEditing = false;
+                .subscribe({
+                    next: convertedFile => {
+                        this.convertedFile = convertedFile;
+                        this.isEditing = false;
+                    },
+                    error: error => console.log(error)
                 });
         }
     }

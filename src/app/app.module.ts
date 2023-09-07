@@ -8,6 +8,7 @@ import { HeaderComponent } from "./core/layout/header/header.component";
 import { FooterComponent } from "./core/layout/footer/footer.component";
 
 import { ApiInterceptor } from "./core/interceptors/api.interceptor";
+import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ApiInterceptor } from "./core/interceptors/api.interceptor";
     FooterComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
