@@ -1,7 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { ToastrModule } from "ngx-toastr";
 
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./core/layout/header/header.component";
@@ -16,8 +18,10 @@ import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
 
     HeaderComponent,
     FooterComponent

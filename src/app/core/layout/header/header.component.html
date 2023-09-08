@@ -31,8 +31,7 @@
                         <input type="text" class="form-control" placeholder="File id"
                         [(ngModel)]="fileId" [ngModelOptions]="{ standalone: true }">
 
-                        <span class="input-group-text" role="button"
-                        [routerLink]="['/converted']" [queryParams]="{id: fileId}">
+                        <span class="input-group-text" role="button" (click)="search()">
                             <i class="bi bi-search"></i>
                         </span>
                     </div> 

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgIf } from "@angular/common";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { FileInfoComponent } from "src/app/shared/file-info/file-info.component";
 import { ConvertedFileService } from "src/app/core/services/converted-file.service";
 import { ConvertedFile } from "src/app/core/model/converted-files.model";
@@ -10,7 +11,7 @@ import { ConvertedFile } from "src/app/core/model/converted-files.model";
     selector: "app-converted-file-page",
     templateUrl: "./converted-file.component.html",
     imports: [FormsModule, NgIf, FileInfoComponent],
-    providers: [ConvertedFileService],
+    providers: [ToastrService, ConvertedFileService],
     standalone: true
 })
 export class ConvertedFileComponent implements OnInit {
@@ -19,6 +20,7 @@ export class ConvertedFileComponent implements OnInit {
     constructor(
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
+        private readonly notifier: ToastrService,
         private readonly convertedFileService: ConvertedFileService
     ) { }
 
@@ -30,21 +32,23 @@ export class ConvertedFileComponent implements OnInit {
     }
 
     private getFile(params: Params): void {
-        const guidId = params["id"];
+        const guidIdParam = params["id"];
 
-        if (guidId === undefined) {
+        if (guidIdParam === undefined) {
+            this.notifier.error("Id must be specified");
             return;
         }
 
-        const x = <string>guidId;
-        if (x.length !== 36) {
+        const guidId = guidIdParam as string;
+        if (guidId.length !== 36) {
+            this.notifier.error("Invalid id format");
             return;
         }
 
         this.convertedFileService.get(guidId)
             .subscribe({
-                next: convertedFile => { this.convertedFile = convertedFile; console.log(convertedFile); },
-                error: error => console.log(error)
+                next: convertedFile => this.convertedFile = convertedFile,
+                error: (error: Error) => this.notifier.error(error.message)
             });
     }
 
@@ -67,7 +71,7 @@ export class ConvertedFileComponent implements OnInit {
                     
                     downloadLink.dispatchEvent(new MouseEvent("click"));
                 },
-                error: error => console.log(error)
+                error: (error: Error) => this.notifier.error(error.message)
             });
     }
 
@@ -76,7 +80,7 @@ export class ConvertedFileComponent implements OnInit {
             this.convertedFileService.delete(this.convertedFile.id)
                 .subscribe({
                     next: _ => this.router.navigate(["/"]),
-                    error: error => console.log(error)
+                    error: (error: Error) => this.notifier.error(error.message)
                 });
         }
     }
@@ -101,7 +105,7 @@ export class ConvertedFileComponent implements OnInit {
                         this.convertedFile = convertedFile;
                         this.isEditing = false;
                     },
-                    error: error => console.log(error)
+                    error: (error: Error) => this.notifier.error(error.message)
                 });
         }
     }

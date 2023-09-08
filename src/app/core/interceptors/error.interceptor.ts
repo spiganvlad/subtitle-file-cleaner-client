@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from "@angular/common/http";
 import { Observable, catchError, throwError  } from "rxjs";
-import { ErrorResponse, IsErrorResponse } from "../model/error-response.model";
+import { ServerErrorResponse, IsServerErrorResponse } from "../model/error-response.model";
 
 @Injectable({ providedIn: "root" })
 export class ErrorInterceptor implements HttpInterceptor {
@@ -10,9 +10,16 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (error instanceof ErrorEvent) {
                 return new Error("Client error");
             }
+
+            let response = error.error;
+            if (response instanceof ArrayBuffer) {
+                const decoder = new TextDecoder();
+                const decodedValue = decoder.decode(response);
+                response = JSON.parse(decodedValue);
+            }
             
-            if (IsErrorResponse(error.error)) {
-                const errorResponse = error.error as ErrorResponse;
+            if (IsServerErrorResponse(response)) {
+                const errorResponse = response as ServerErrorResponse;
 
                 if (errorResponse.errors.length > 0) {
                     return new Error(errorResponse.errors[0]);

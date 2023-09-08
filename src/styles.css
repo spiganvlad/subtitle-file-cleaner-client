@@ -3,6 +3,7 @@
 @import url("@fontsource/julee/index.css");
 @import url("@fontsource/libre-baskerville/index.css");
 @import url("@fontsource/baskervville/index.css");
+@import url('ngx-toastr/toastr');
 
 :root {
     --header-color: #55BDCA;

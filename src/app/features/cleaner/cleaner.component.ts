@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgIf } from "@angular/common";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { CornerMessageBoxComponent } from "src/app/shared/corner-message-box/corner-message-box.component";
+import { ToastrService } from "ngx-toastr";
 import { DragAndDropComponent } from "src/app/shared/drag-and-drop/drag-and-drop.component";
 import { AdditionalOptionsComponent } from "src/app/shared/additional-options/additional-options.component";
 import { FileInfoComponent } from "src/app/shared/file-info/file-info.component";
@@ -13,22 +13,20 @@ import { OptionList } from "src/app/core/model/option-list.model";
 @Component({
     selector: "app-cleaner-page",
     templateUrl: "./cleaner.component.html",
-    imports: [NgIf, CornerMessageBoxComponent, DragAndDropComponent, AdditionalOptionsComponent,
-        FileInfoComponent],
-    providers: [ConvertedFileService],
+    imports: [NgIf, DragAndDropComponent, AdditionalOptionsComponent,
+    FileInfoComponent],
+    providers: [ToastrService, ConvertedFileService],
     standalone: true
 })
 export class CleanerComponent implements OnInit { 
-    @ViewChild(CornerMessageBoxComponent)
-    private messageBox: CornerMessageBoxComponent | undefined;
-
     public converter: Converter | undefined;
     public optionList: OptionList | undefined;
 
     constructor(
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
-        private readonly convertedFileService: ConvertedFileService,
+        private readonly notifier: ToastrService,
+        private readonly convertedFileService: ConvertedFileService
     ) { }
 
     public ngOnInit(): void {
@@ -63,38 +61,36 @@ export class CleanerComponent implements OnInit {
         }
 
         if (this.converter.file === undefined) {
-            this.messageBox?.showMessage("No file to convert selected");
+            this.notifier.error("No file to convert selected");
             return;
         }
         
         this.convertedFileService.create(this.converter, this.optionList)
             .subscribe({
                 next: convertedFile => this.router.navigate(["/converted"], { queryParams: { id: convertedFile.id } }),
-                error: error => this.messageBox?.showMessage(error.message)
+                error: (error: Error) => this.notifier.error(error.message)
             });
     }
 
     public receiveFile(files: FileList): void {
-        if (files.length === 0) {
+        if (files.length === 0 || this.converter === undefined) {
             return;
         }
 
         const file: File = files[0];
 
-        const extension = "." + this.converter?.name.toLowerCase();
+        const extension = "." + this.converter.name.toLowerCase();
         if (!file.name.endsWith(extension)) {
-            this.messageBox?.showMessage("File extension must be " + extension);
+            this.notifier.error("File extension must be " + extension);
             return;
         }
 
         if (file.size > 1_000_000) {
-            this.messageBox?.showMessage("The file cannot be larger than 1 megabyte");
+            this.notifier.error("The file cannot be larger than 1 megabyte");
             return;
         }
 
-        if (this.converter !== undefined) {
-            this.converter.file = file;
-        }
+        this.converter.file = file; 
     }
 
     public optionsChaned(optionList: OptionList): void {
