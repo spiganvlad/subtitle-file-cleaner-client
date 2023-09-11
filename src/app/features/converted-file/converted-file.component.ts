@@ -4,6 +4,7 @@ import { NgIf } from "@angular/common";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { FileInfoComponent } from "src/app/shared/file-info/file-info.component";
+import { GuidService } from "src/app/core/services/guid.service";
 import { ConvertedFileService } from "src/app/core/services/converted-file.service";
 import { ConvertedFile } from "src/app/core/model/converted-files.model";
 
@@ -21,6 +22,7 @@ export class ConvertedFileComponent implements OnInit {
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
         private readonly notifier: ToastrService,
+        private readonly guidService: GuidService,
         private readonly convertedFileService: ConvertedFileService
     ) { }
 
@@ -40,7 +42,7 @@ export class ConvertedFileComponent implements OnInit {
         }
 
         const guidId = guidIdParam as string;
-        if (guidId.length !== 36) {
+        if (!this.guidService.isGuidValid(guidId)) {
             this.notifier.error("Invalid id format");
             return;
         }
