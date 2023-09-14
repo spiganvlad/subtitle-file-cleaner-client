@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
 import { NgIf } from "@angular/common";
 import { ConverterType } from "src/app/core/model/converter-type.enum";
 import { OptionCreatorService } from "src/app/core/services/option-creator.service";
@@ -12,7 +12,7 @@ import { OptionType } from "src/app/core/model/option-type.enum";
     providers: [OptionCreatorService],
     standalone: true
 })
-export class AdditionalOptionsComponent implements OnInit {
+export class AdditionalOptionsComponent implements OnInit, OnChanges {
     @Input("converterType")
     public converterType: ConverterType | undefined;
     public optionList: OptionList | undefined;
@@ -20,6 +20,10 @@ export class AdditionalOptionsComponent implements OnInit {
     constructor(private readonly optionCreator: OptionCreatorService) { }
 
     public ngOnInit(): void {
+        this.createOptionList();
+    }
+
+    public ngOnChanges(): void {
         this.createOptionList();
     }
 
