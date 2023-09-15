@@ -56,3 +56,8 @@ app-root {
     background-color: var(--header-color);
     color: black;
 }
+
+.btn-primary:active {
+    --bs-btn-active-color: black;
+    --bs-btn-active-bg: var(--highlighted-warm-color);
+}
