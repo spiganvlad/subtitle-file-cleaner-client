@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ConvertedFile } from "../model/converted-files.model";
 import { Converter } from "../model/converter.model";
@@ -15,24 +15,15 @@ export class ConvertedFileService {
         const formData = new FormData();
         formData.append("file", converter.file!);
 
-        const requestHeaders = new HttpHeaders();
-        requestHeaders.append("Content-Type", "multipart/form-data");
-
-        const urlParams = new URLSearchParams();
         if (optionList !== undefined) {
             optionList.options.forEach((value, type) => {
                 if (value) {
-                    urlParams.append("postConversionOptions", type.toString());
+                    formData.append("postConversionOptions", type.toString());
                 }
             });
-
-            const urlParamsString = urlParams.toString();
-            if (urlParamsString.length !== 0) {
-                url = `${url}?${urlParamsString}`;
-            }
         }
-        
-        return this.http.post<ConvertedFile>(url, formData, { headers: requestHeaders });
+
+        return this.http.post<ConvertedFile>(url, formData);
     }
 
     public get(guidId: string): Observable<ConvertedFile> {
