@@ -61,3 +61,15 @@ app-root {
     --bs-btn-active-color: black;
     --bs-btn-active-bg: var(--highlighted-warm-color);
 }
+
+.form-check-input {
+    border: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--highlighted-warm-color);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.3rem rgba(var(--highlighted-warm-color-rgb), 0.4);
+}
