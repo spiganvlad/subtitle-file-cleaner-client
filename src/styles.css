@@ -52,13 +52,13 @@ app-root {
 }
 
 .btn-primary {
-    background-color: var(--highlighted-cold-color);
-    border: none
+    --bs-btn-bg: var(--highlighted-cold-color);
+    border: none;
 }
 
 .btn-primary:hover {
-    color: black;
-    background-color: var(--header-color);
+    --bs-btn-hover-color: black;
+	--bs-btn-hover-bg: var(--header-color);
 }
 
 .btn-primary:active {
