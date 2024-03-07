@@ -1,6 +1,11 @@
-.input-group-text {
+.dropdown-item:hover {
+    color: black;
+    background-color: var(--header-color);
+}
+
+.dropdown-item:focus {
+    color: black;
     background-color: var(--highlighted-warm-color);
-    border: none;
 }
 
 .form-control {
@@ -10,15 +15,17 @@
 
 .form-control:focus {
     border-color: var(--highlighted-warm-color);
+}
+
+.warm-shadow-on-focus:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(var(--highlighted-warm-color-rgb), 0.75);
 }
 
-.dropdown-item:hover {
-    color: black;
-    background-color: var(--header-color);
+.input-group-text {
+    background-color: var(--highlighted-warm-color);
+    border: none;
 }
 
-.dropdown-item:focus {
-    color: black;
-    background-color: var(--highlighted-warm-color);
+.outline-none {
+    outline: none;
 }

@@ -58,7 +58,7 @@ app-root {
 
 .btn-primary:hover {
     --bs-btn-hover-color: black;
-	--bs-btn-hover-bg: var(--header-color);
+    --bs-btn-hover-bg: var(--header-color);
 }
 
 .btn-primary:active {

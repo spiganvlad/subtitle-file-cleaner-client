@@ -28,10 +28,11 @@
             <div>
                 <form class="form-inline">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="File id"
+                        <input type="text" class="form-control warm-shadow-on-focus" placeholder="File id" 
                         [(ngModel)]="fileId" [ngModelOptions]="{ standalone: true }">
 
-                        <span class="input-group-text" role="button" (click)="search()">
+                        <span tabindex="0" class="input-group-text outline-none warm-shadow-on-focus" role="button"
+                        (click)="search()" (keyup.enter)="search()">
                             <i class="bi bi-search"></i>
                         </span>
                     </div> 
