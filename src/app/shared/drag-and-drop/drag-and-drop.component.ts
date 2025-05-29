@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Output, ViewChild, ElementRef } from "@angular/core";
-import { NgClass } from "@angular/common";
 import { DropFileDirective } from "../directives/drop-file.directive";
 
 @Component({
     selector: "app-drag-and-drop",
     templateUrl: "./drag-and-drop.component.html",
     styleUrls: ["drag-and-drop.component.css"],
-    imports: [NgClass, DropFileDirective],
+    imports: [DropFileDirective],
     standalone: true
 })
 export class DragAndDropComponent {

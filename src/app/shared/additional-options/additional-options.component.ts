@@ -9,8 +9,7 @@ import { OptionType } from "src/app/core/model/option-type.enum";
     selector: "app-additional-options",
     templateUrl: "./additional-options.component.html",
     imports: [NgIf],
-    providers: [OptionCreatorService],
-    standalone: true
+    providers: [OptionCreatorService]
 })
 export class AdditionalOptionsComponent implements OnInit, OnChanges {
     @Input("converterType")

@@ -1,8 +1,7 @@
 import { Directive, HostListener, Output, EventEmitter } from "@angular/core";
 
 @Directive({
-    selector: "[dropFile]",
-    standalone: true
+    selector: "[dropFile]"
 })
 export class DropFileDirective {
     @Output()

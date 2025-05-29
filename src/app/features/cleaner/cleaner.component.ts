@@ -15,10 +15,9 @@ import { OptionList } from "src/app/core/model/option-list.model";
     templateUrl: "./cleaner.component.html",
     imports: [NgIf, DragAndDropComponent, AdditionalOptionsComponent,
     FileInfoComponent],
-    providers: [ToastrService, ConvertedFileService],
-    standalone: true
+    providers: [ToastrService, ConvertedFileService]
 })
-export class CleanerComponent implements OnInit { 
+export default class CleanerComponent implements OnInit { 
     public converter: Converter | undefined;
     public optionList: OptionList | undefined;
 

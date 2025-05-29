@@ -6,8 +6,7 @@ import { StorageCapacityPipe } from "../pipes/storage-capacity.pipe";
     selector: "app-file-info",
     templateUrl: "./file-info.component.html",
     styleUrls: ["./file-info.component.css"],
-    imports: [StorageCapacityPipe],
-    standalone: true
+    imports: [StorageCapacityPipe]
 })
 export class FileInfoComponent {
     @Input("file")

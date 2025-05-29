@@ -1,8 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({ 
-    name: "storageCapacity",
-    standalone: true
+    name: "storageCapacity"
 })
 export class StorageCapacityPipe implements PipeTransform {
     private units = ["Bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];

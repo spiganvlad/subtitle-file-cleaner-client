@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "subtitle-file-cleaner-client:build:production"
+              "buildTarget": "subtitle-file-cleaner-client:build:production"
             },
             "development": {
-              "browserTarget": "subtitle-file-cleaner-client:build:development"
+              "buildTarget": "subtitle-file-cleaner-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "subtitle-file-cleaner-client:build"
+            "buildTarget": "subtitle-file-cleaner-client:build"
           }
         },
         "test": {

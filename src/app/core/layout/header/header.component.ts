@@ -3,13 +3,11 @@ import { FormsModule } from "@angular/forms";
 import { RouterLink, Router } from "@angular/router";
 import { ConverterType } from "../../model/converter-type.enum";
 
-
 @Component({
     selector: "app-layout-header",
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
-    imports: [FormsModule, RouterLink],
-    standalone: true
+    imports: [FormsModule, RouterLink]
 })
 export class HeaderComponent {
     public fileId: string | undefined;

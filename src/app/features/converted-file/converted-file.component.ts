@@ -12,10 +12,9 @@ import { ConvertedFile } from "src/app/core/model/converted-files.model";
     selector: "app-converted-file-page",
     templateUrl: "./converted-file.component.html",
     imports: [FormsModule, NgIf, FileInfoComponent],
-    providers: [ToastrService, ConvertedFileService],
-    standalone: true
+    providers: [ToastrService, ConvertedFileService]
 })
-export class ConvertedFileComponent implements OnInit {
+export default class ConvertedFileComponent implements OnInit {
     public convertedFile: ConvertedFile | undefined;
 
     constructor(
