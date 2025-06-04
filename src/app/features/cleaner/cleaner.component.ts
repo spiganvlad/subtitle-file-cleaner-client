@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { NgIf } from "@angular/common";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { DragAndDropComponent } from "src/app/shared/drag-and-drop/drag-and-drop.component";
@@ -13,7 +12,7 @@ import { OptionList } from "src/app/core/model/option-list.model";
 @Component({
     selector: "app-cleaner-page",
     templateUrl: "./cleaner.component.html",
-    imports: [NgIf, DragAndDropComponent, AdditionalOptionsComponent,
+    imports: [DragAndDropComponent, AdditionalOptionsComponent,
     FileInfoComponent],
     providers: [ToastrService, ConvertedFileService]
 })

@@ -1,30 +1,33 @@
-<div *ngIf="converter !== undefined; else unsupportedConverter" class="container my-5">
-    <div class="d-flex justify-content-center">
-        <h2 class="my-auto p-3 header-text-font">{{converter.name}} cleaner</h2>
-    </div>
-
-    <div class="row my-4">
-        <div class="col-sm-8">
-            <app-drag-and-drop (fileReceivedEvent)="receiveFile($event)"></app-drag-and-drop>
+@if (converter !== undefined) {
+    <div class="container my-5">
+        <div class="d-flex justify-content-center">
+            <h2 class="my-auto p-3 header-text-font">{{converter.name}} cleaner</h2>
         </div>
-        
-        <div class="col-sm-4 my-3">
-            <app-additional-options [converterType]="converter.type" (optionsChanged)="optionsChaned($event)"></app-additional-options>
-
-            <div class="text-center">
-                <button class="btn btn-primary btn-lg regular-text-font" (click)="convertFile()">Convert to txt</button>
+    
+        <div class="row my-4">
+            <div class="col-sm-8">
+                <app-drag-and-drop (fileReceivedEvent)="receiveFile($event)"></app-drag-and-drop>
+            </div>
+            
+            <div class="col-sm-4 my-3">
+                <app-additional-options [converterType]="converter.type" (optionsChanged)="optionsChaned($event)"></app-additional-options>
+    
+                <div class="text-center">
+                    <button class="btn btn-primary btn-lg regular-text-font" (click)="convertFile()">Convert to txt</button>
+                </div>
             </div>
         </div>
+    
+        @if (converter.file !== undefined) {
+            <div class="row">
+                <h4 class="mb-3 text-center header-text-font">Selected file</h4>
+                <app-file-info [file]="converter.file"></app-file-info>
+            </div>
+        }
     </div>
-
-    <div *ngIf="converter.file !== undefined" class="row">
-        <h4 class="mb-3 text-center header-text-font">Selected file</h4>
-        <app-file-info [file]="converter.file"></app-file-info>
-    </div>
-</div>
-
-<ng-template #unsupportedConverter>
+}
+@else {
     <div class="d-flex justify-content-center">
         <h4 class="mt-5 header-text-font">Selected cleaner is not supported</h4>
     </div>
-</ng-template>
+}

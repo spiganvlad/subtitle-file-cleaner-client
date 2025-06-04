@@ -1,46 +1,48 @@
-<div *ngIf="convertedFile; else notFound" class="container mt-5">
-    <div class="d-flex justify-content-center">
-        <h4 class="my-auto mx-3 header-text-font">File id:</h4>
-        <p class="my-auto fw-bolder">{{convertedFile.id}}</p>
-    </div>
-    
-    <div class="my-3 container">
-        <div class="row">
-            <div class="col-sm-4 text-center">
-                <button class="btn btn-primary my-1 mx-3 regular-text-font" (click)="downloadFile()">Download</button>
-            </div>
-
-            <div class="col-sm-4 text-center">
-                <button class="btn btn-primary my-1 mx-3 regular-text-font" (click)="toggleEditing()">Edit Name</button>
-            </div>
-
-            <div class="col-sm-4 text-center">
-                <button class="btn btn-danger my-1 mx-3 regular-text-font" (click)="deleteFile()">Delete</button>
-            </div>
+@if (convertedFile) {
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <h4 class="my-auto mx-3 header-text-font">File id:</h4>
+            <p class="my-auto fw-bolder">{{convertedFile.id}}</p>
         </div>
-    </div>
-
-    <div class="mt-3 container">
-        <div *ngIf="!isEditing; else edit" class="row">
-            <app-file-info [file]="convertedFile"></app-file-info>
-        </div>
-
-        <ng-template #edit class="row">
+        
+        <div class="my-3 container">
             <div class="row">
-                <div class="col-10">
-                    <input class="form-control" [(ngModel)]="editName" [ngModelOptions]="{ standalone: true }">
+                <div class="col-sm-4 text-center">
+                    <button class="btn btn-primary my-1 mx-3 regular-text-font" (click)="downloadFile()">Download</button>
                 </div>
-
-                <div class="col-2">
-                    <button class="btn btn-primary regular-text-font" (click)="saveEditing()">Save</button>
+    
+                <div class="col-sm-4 text-center">
+                    <button class="btn btn-primary my-1 mx-3 regular-text-font" (click)="toggleEditing()">Edit Name</button>
+                </div>
+    
+                <div class="col-sm-4 text-center">
+                    <button class="btn btn-danger my-1 mx-3 regular-text-font" (click)="deleteFile()">Delete</button>
                 </div>
             </div>
-        </ng-template>
+        </div>
+    
+        <div class="mt-3 container">
+            @if (!isEditing) {
+                <div class="row">
+                    <app-file-info [file]="convertedFile"></app-file-info>
+                </div>
+            }
+            @else {
+                <div class="row">
+                    <div class="col-10">
+                        <input class="form-control" [(ngModel)]="editName" [ngModelOptions]="{ standalone: true }">
+                    </div>
+    
+                    <div class="col-2">
+                        <button class="btn btn-primary regular-text-font" (click)="saveEditing()">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-</div>
-
-<ng-template #notFound>
+}
+@else {
     <div class="d-flex justify-content-center">
         <h4 class="mt-5 header-text-font">File with provided id not found</h4>
     </div>
-</ng-template>
+}

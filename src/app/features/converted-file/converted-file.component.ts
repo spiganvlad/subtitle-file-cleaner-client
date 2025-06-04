@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { NgIf } from "@angular/common";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { FileInfoComponent } from "src/app/shared/file-info/file-info.component";
@@ -11,7 +10,7 @@ import { ConvertedFile } from "src/app/core/model/converted-files.model";
 @Component({
     selector: "app-converted-file-page",
     templateUrl: "./converted-file.component.html",
-    imports: [FormsModule, NgIf, FileInfoComponent],
+    imports: [FormsModule, FileInfoComponent],
     providers: [ToastrService, ConvertedFileService]
 })
 export default class ConvertedFileComponent implements OnInit {

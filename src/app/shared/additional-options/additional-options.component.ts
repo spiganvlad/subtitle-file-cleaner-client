@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
-import { NgIf } from "@angular/common";
 import { ConverterType } from "src/app/core/model/converter-type.enum";
 import { OptionCreatorService } from "src/app/core/services/option-creator.service";
 import { OptionList } from "src/app/core/model/option-list.model";
@@ -8,7 +7,6 @@ import { OptionType } from "src/app/core/model/option-type.enum";
 @Component({
     selector: "app-additional-options",
     templateUrl: "./additional-options.component.html",
-    imports: [NgIf],
     providers: [OptionCreatorService]
 })
 export class AdditionalOptionsComponent implements OnInit, OnChanges {
