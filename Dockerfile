@@ -1,8 +1,10 @@
-FROM node:latest as node
+FROM node:20 as build
 WORKDIR /app
+COPY package*.json ./
+RUN npm ci
 COPY . .
-RUN npm install
-RUN npm run build --prod
+RUN npm run build --production
 
 FROM nginx:alpine
-COPY --from=node /app/dist/subtitle-file-cleaner-client /usr/share/nginx/html
+COPY --from=build /app/dist/subtitle-file-cleaner-client /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
